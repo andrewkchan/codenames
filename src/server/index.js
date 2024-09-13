@@ -51,7 +51,7 @@ const playerMap = {}; // map of player id to room hash
 
         const agentIndex = teams[deletedPlayer.team].agents.indexOf(socket.id);
         if (agentIndex !== -1) {
-          teams[deletedPlayer.team].agents.splice(agentIndex);
+          teams[deletedPlayer.team].agents.splice(agentIndex, 1);
 
           console.log("emit: player-disconnect", {
             teams: teams,
@@ -93,7 +93,7 @@ const playerMap = {}; // map of player id to room hash
             for (let cellIndex in turn.votes) {
               const i = turn.votes[cellIndex].indexOf(deletedPlayer.id);
               if (i !== -1) {
-                turn.votes[cellIndex].splice(i)
+                turn.votes[cellIndex].splice(i, 1);
                 if (turn.votes[cellIndex].length === 0) {
                   delete turn.votes[cellIndex];
                   break;
@@ -396,7 +396,7 @@ const playerMap = {}; // map of player id to room hash
         if (player.role === Common.ROLE_SPYMASTER) {
           oldTeam.spymaster = null;
         } else {
-          oldTeam.agents.splice(oldTeam.agents.indexOf(socket.id));
+          oldTeam.agents.splice(oldTeam.agents.indexOf(socket.id), 1);
         }
 
         newTeam.spymaster = socket.id;
@@ -407,7 +407,7 @@ const playerMap = {}; // map of player id to room hash
         if (player.role === Common.ROLE_SPYMASTER) {
           oldTeam.spymaster = null;
         } else {
-          oldTeam.agents.splice(oldTeam.agents.indexOf(socket.id));
+          oldTeam.agents.splice(oldTeam.agents.indexOf(socket.id), 1);
         }
 
         newTeam.agents.push(socket.id);
@@ -452,7 +452,7 @@ const playerMap = {}; // map of player id to room hash
       for (let otherCellIndex in votes) {
         const i = votes[otherCellIndex].indexOf(player.id);
         if (i !== -1) {
-          votes[otherCellIndex].splice(i);
+          votes[otherCellIndex].splice(i, 1);
           if (votes[otherCellIndex].length === 0) {
             delete votes[otherCellIndex];
           }

@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import './app.css';
-import './fonts.css';
 import * as Common from "../common";
 
 import Lobby from "./Lobby";
